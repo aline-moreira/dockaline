@@ -94,7 +94,9 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
-sysbench:
-  image: ljishen/sysbench
-  container_name: sysbench
+  sysbench:
+    image: ljishen/sysbench
+    container_name: sysbench
+    volumes:
+      - 'pwd':/root/results
   
