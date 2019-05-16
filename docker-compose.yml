@@ -117,5 +117,5 @@ services:
     image: ljishen/sysbench
     container_name: sysbench
     volumes:
-      - 'pwd':/root/results
+      - ./:/root/results
   
