@@ -6,7 +6,6 @@ networks:
 
 volumes:
     prometheus_data: {}
-    grafana_data: {}
 
 services:
 
@@ -84,27 +83,6 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
-  grafana:
-    image: grafana/grafana:6.1.6
-    container_name: grafana
-    volumes:
-      - grafana_data:/var/lib/grafana
-      - ./grafana/datasources:/etc/grafana/datasources
-      - ./grafana/dashboards:/etc/grafana/dashboards
-      - ./grafana/setup.sh:/setup.sh
-    entrypoint: /setup.sh
-    environment:
-      - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
-      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
-      - GF_USERS_ALLOW_SIGN_UP=false
-    restart: unless-stopped
-    expose:
-      - 3000
-    networks:
-      - monitor-net
-    labels:
-      org.label-schema.group: "monitoring"
-
   pushgateway:
     image: prom/pushgateway:v0.8.0
     container_name: pushgateway
@@ -116,21 +94,7 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
-  caddy:
-    image: stefanprodan/caddy
-    container_name: caddy
-    ports:
-      - "3000:3000"
-      - "9090:9090"
-      - "9093:9093"
-      - "9091:9091"
-    volumes:
-      - ./caddy/:/etc/caddy/
-    environment:
-      - ADMIN_USER=${ADMIN_USER:-admin}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
-    restart: unless-stopped
-    networks:
-      - monitor-net
-    labels:
-      org.label-schema.group: "monitoring"
+sysbench:
+  image: ljishen/sysbench
+  container_name: sysbench
+  
