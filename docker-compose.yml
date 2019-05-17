@@ -115,7 +115,7 @@ services:
       
   sysbench:
     container_name: sysbench
-    build: ./sysbench
+    image: ljishen/sysbench
     volumes:
       - ./:/root/results
   
