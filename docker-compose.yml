@@ -114,7 +114,7 @@ services:
       org.label-schema.group: "monitoring"
       
   sysbench:
-    image: ljishen/sysbench
+    image: docker pull ljishen/sysbench
     container_name: sysbench
     volumes:
       - ./:/root/results
