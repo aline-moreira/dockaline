@@ -30,22 +30,6 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
-  alertmanager:
-    image: prom/alertmanager:v0.17.0
-    container_name: alertmanager
-    volumes:
-      - ./alertmanager/:/etc/alertmanager/
-    command:
-      - '--config.file=/etc/alertmanager/config.yml'
-      - '--storage.path=/alertmanager'
-    restart: unless-stopped
-    expose:
-      - 9093
-    networks:
-      - monitor-net
-    labels:
-      org.label-schema.group: "monitoring"
-
   nodeexporter:
     image: prom/node-exporter:v0.18.0
     container_name: nodeexporter
@@ -93,29 +77,10 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
-
-  caddy:
-    image: stefanprodan/caddy
-    container_name: caddy
-    ports:
-      - "3000:3000"
-      - "9090:9090"
-      - "9093:9093"
-      - "9091:9091"
-    volumes:
-      - ./caddy/:/etc/caddy/
-    environment:
-      - ADMIN_USER=${ADMIN_USER:-admin}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
-    restart: unless-stopped
-    networks:
-      - monitor-net
-    labels:
-      org.label-schema.group: "monitoring"
       
   sysbench:
     container_name: sysbench
-    image: ljishen/sysbench
+    image: moreiraal/sysbench
     volumes:
       - ./:/root/results
   
