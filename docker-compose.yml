@@ -79,8 +79,7 @@ services:
       org.label-schema.group: "monitoring"
       
   sysbench:
-    container_name: sysbench
+    container_name: sysbench_aline
     image: moreiraal/sysbench
-    volumes:
-      - ./:/root/results
-  
+    stdin_open: true
+    tty: true
