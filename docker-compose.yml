@@ -83,3 +83,10 @@ services:
     image: moreiraal/sysbench
     stdin_open: true
     tty: true
+ 
+  nuttcp:
+    container_name: nuttcp
+    image: gabyct/nuttcp
+    stdin_open: true
+    tty: true
+
