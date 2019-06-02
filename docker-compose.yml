@@ -86,7 +86,7 @@ services:
  
   nuttcp:
     container_name: nuttcp
-    image: gabyct/nuttcp
+    image: moreiraal/nuttcp
     stdin_open: true
     tty: true
 
