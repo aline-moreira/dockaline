@@ -84,9 +84,5 @@ services:
     stdin_open: true
     tty: true
  
-  nuttcp:
-    container_name: nuttcp
-    image: moreiraal/nuttcp
-    stdin_open: true
-    tty: true
+
 
